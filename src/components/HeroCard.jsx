@@ -6,7 +6,6 @@ export default function HeroCard({ card, onExplore, style, className = '', swipe
 
   const kbEntry = KB_CONTENT[card.sourceId];
   const rawSummary = kbEntry?.sections[0] || '';
-  // sections[0] starts with the heading word (e.g. "Summary\n...") — skip the first line
   const summaryBody = rawSummary.split('\n').slice(1).join('\n').trim();
   const firstSentence = summaryBody.split(/\.\s/)[0];
   const teaser = firstSentence
@@ -19,13 +18,14 @@ export default function HeroCard({ card, onExplore, style, className = '', swipe
   const isExploring = direction === 'explore' && overlayOpacity > 0.12;
 
   function handleAnimationEnd(e) {
-    // Only handle animations on the card root itself, not bubbled child events
     if (e.target !== e.currentTarget) return;
     onAnimationEnd?.(e);
   }
 
   return (
     <div className={`hero-card ${className}`} style={style} onAnimationEnd={handleAnimationEnd}>
+
+      {/* Swipe overlay stamp */}
       {direction && overlayOpacity > 0 && (
         <div className={`hero-card-swipe-overlay ${direction}`} style={{ opacity: overlayOpacity }}>
           <span className="hero-card-stamp">
@@ -33,6 +33,8 @@ export default function HeroCard({ card, onExplore, style, className = '', swipe
           </span>
         </div>
       )}
+
+      {/* Top row: tag + date/social */}
       <div className="hero-card-top">
         <span className="hero-card-tag">{card.tag}</span>
         {isFirst ? (
@@ -43,6 +45,8 @@ export default function HeroCard({ card, onExplore, style, className = '', swipe
           <span className="hero-card-social">{card.socialLabel}</span>
         )}
       </div>
+
+      {/* Source */}
       <div className="hero-card-source">
         <span className="hero-card-dot">&#9679;</span>
         <span>{source?.source || 'Knowledge Base'}</span>
@@ -50,6 +54,8 @@ export default function HeroCard({ card, onExplore, style, className = '', swipe
           <span className="hero-card-guest">with {source.guest}</span>
         )}
       </div>
+
+      {/* Main idea */}
       <p className="hero-card-idea">
         {card.idea.split(' — ').length > 1 ? (
           <>
@@ -59,18 +65,22 @@ export default function HeroCard({ card, onExplore, style, className = '', swipe
           card.idea
         )}
       </p>
+
+      {/* Teaser quote */}
       {teaser && (
         <div className="hero-card-teaser">
           <div className="hero-card-teaser-rule" />
           <p className="hero-card-teaser-text">&ldquo;{teaser}&rdquo;</p>
         </div>
       )}
+
+      {/* Explore CTA — full-width pill */}
       <div className="hero-card-bottom">
         <button
           className={`hero-card-explore${isExploring ? ' is-revealing' : ''}`}
           onClick={() => onExplore?.(card)}
         >
-          Explore &rarr;
+          Explore this idea →
         </button>
       </div>
     </div>

@@ -4,7 +4,7 @@ import HeroCard from './HeroCard';
 export default function CardDeck({ cards, onExplore }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [swipeOffset, setSwipeOffset] = useState(0);
-  const [flyingOff, setFlyingOff] = useState(null); // null | 'right' | 'left'
+  const [flyingOff, setFlyingOff] = useState(null);
   const [isEntering, setIsEntering] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const [nudged, setNudged] = useState(false);
@@ -12,104 +12,59 @@ export default function CardDeck({ cards, onExplore }) {
   const mouseStart = useRef(null);
   const flyEndFiredRef = useRef(false);
 
-  // Nudge the card once on mount to hint swipeability
+  // Nudge on mount to hint swipeability
   useEffect(() => {
     const t = setTimeout(() => setNudged(true), 1200);
     return () => clearTimeout(t);
   }, []);
 
-  function cancelNudge() {
-    setNudged(false);
-  }
+  function cancelNudge() { setNudged(false); }
 
   function getSwipeThreshold() {
-    // Viewport-relative threshold: 14% of screen width, capped at 60px
     return typeof window !== 'undefined'
       ? Math.min(60, window.innerWidth * 0.14)
       : 52;
   }
 
   function handleSwipe(delta) {
-    if (Math.abs(delta) <= getSwipeThreshold()) {
-      setSwipeOffset(0);
-      return;
-    }
-    flyEndFiredRef.current = false; // reset guard for this swipe
+    if (Math.abs(delta) <= getSwipeThreshold()) { setSwipeOffset(0); return; }
+    flyEndFiredRef.current = false;
     setFlyingOff(delta > 0 ? 'right' : 'left');
-    // swipeOffset stays — fly animation starts from current drag position
   }
 
   function handleFlyEnd() {
-    // Guard against animationend bubbling from children or double-fire in StrictMode
     if (flyEndFiredRef.current) return;
     flyEndFiredRef.current = true;
-
     const wasRight = flyingOff === 'right';
     setFlyingOff(null);
     setSwipeOffset(0);
     if (wasRight) {
       onExplore?.(cards[currentIndex]);
     } else {
-      // Always advance — loop back to start when reaching the end
       setCurrentIndex(i => (i < cards.length - 1 ? i + 1 : 0));
       setIsEntering(true);
     }
   }
 
-  function handleEntranceEnd() {
-    setIsEntering(false);
-  }
+  function handleEntranceEnd() { setIsEntering(false); }
 
-  function handleTouchStart(e) {
-    cancelNudge();
-    touchStart.current = e.touches[0].clientX;
-  }
+  // Touch
+  function handleTouchStart(e) { cancelNudge(); touchStart.current = e.touches[0].clientX; }
+  function handleTouchMove(e) { if (touchStart.current === null) return; setSwipeOffset(e.touches[0].clientX - touchStart.current); }
+  function handleTouchEnd(e) { if (touchStart.current === null) return; const d = e.changedTouches[0].clientX - touchStart.current; touchStart.current = null; handleSwipe(d); }
 
-  function handleTouchMove(e) {
-    if (touchStart.current === null) return;
-    setSwipeOffset(e.touches[0].clientX - touchStart.current);
-  }
+  // Mouse
+  function handleMouseDown(e) { cancelNudge(); mouseStart.current = e.clientX; setIsDragging(true); }
+  function handleMouseMove(e) { if (mouseStart.current === null) return; setSwipeOffset(e.clientX - mouseStart.current); }
+  function handleMouseUp(e) { if (mouseStart.current === null) return; const d = e.clientX - mouseStart.current; mouseStart.current = null; setIsDragging(false); handleSwipe(d); }
+  function handleMouseLeave() { if (mouseStart.current !== null) { mouseStart.current = null; setIsDragging(false); setSwipeOffset(0); } }
 
-  function handleTouchEnd(e) {
-    if (touchStart.current === null) return;
-    const delta = e.changedTouches[0].clientX - touchStart.current;
-    touchStart.current = null;
-    handleSwipe(delta);
-  }
-
-  function handleMouseDown(e) {
-    cancelNudge();
-    mouseStart.current = e.clientX;
-    setIsDragging(true);
-  }
-
-  function handleMouseMove(e) {
-    if (mouseStart.current === null) return;
-    setSwipeOffset(e.clientX - mouseStart.current);
-  }
-
-  function handleMouseUp(e) {
-    if (mouseStart.current === null) return;
-    const delta = e.clientX - mouseStart.current;
-    mouseStart.current = null;
-    setIsDragging(false);
-    handleSwipe(delta);
-  }
-
-  function handleMouseLeave() {
-    if (mouseStart.current !== null) {
-      mouseStart.current = null;
-      setIsDragging(false);
-      setSwipeOffset(0);
-    }
-  }
-
-  // Show up to 8 dots; current position wraps around
-  const dotCount = Math.min(cards.length, 8);
-  const activeDot = currentIndex % dotCount;
+  // Progress bar fill
+  const progress = cards.length > 1 ? (currentIndex / (cards.length - 1)) * 100 : 100;
 
   return (
     <div className="card-deck-wrapper">
+      {/* Card stack */}
       <div
         className={`card-deck${isDragging ? ' is-dragging' : ''}`}
         onTouchStart={handleTouchStart}
@@ -122,8 +77,7 @@ export default function CardDeck({ cards, onExplore }) {
       >
         {cards.map((card, i) => {
           const offset = i - currentIndex;
-          if (offset < 0) return null;
-          if (offset > 2) return null;
+          if (offset < 0 || offset > 2) return null;
 
           const isFront = offset === 0;
           const isFlyingOff = isFront && flyingOff !== null;
@@ -152,13 +106,13 @@ export default function CardDeck({ cards, onExplore }) {
               onAnimationEnd={handleAnimEnd}
               style={{
                 position: isFront ? 'relative' : 'absolute',
-                top: offset * 6,
+                top: offset * 8,
                 transform: isFlyingOff
                   ? undefined
                   : `scale(${1 - offset * 0.04})${isFront && swipeOffset ? ` translateX(${swipeOffset}px) rotate(${flyRot}deg)` : ''}`,
                 '--fly-x': `${swipeOffset}px`,
                 '--fly-rot': `${flyRot}deg`,
-                opacity: isFront ? 1 : offset === 1 ? 0.7 : 0.45,
+                opacity: isFront ? 1 : offset === 1 ? 0.65 : 0.35,
                 zIndex: 3 - offset,
                 pointerEvents: isFront ? 'auto' : 'none',
                 transition: (swipeOffset || isFlyingOff) ? 'none' : 'all 0.3s ease',
@@ -168,23 +122,41 @@ export default function CardDeck({ cards, onExplore }) {
         })}
       </div>
 
+      {/* Footer: action buttons + progress bar */}
       <div className="card-deck-footer">
-        <span className="card-deck-footer-hint hint-left">
-          <span className="hint-arrow">←</span>
-          skip
-        </span>
-        <div className="card-deck-footer-center">
-          <div className="card-deck-footer-dots">
-            {Array.from({ length: dotCount }).map((_, i) => (
-              <span key={i} className={`card-deck-dot${i === activeDot ? ' active' : ''}`} />
-            ))}
-          </div>
-          <span className="card-deck-swipe-label">swipe to explore</span>
+        {/* Skip button */}
+        <button
+          className="card-deck-action card-deck-action-skip"
+          aria-label="Skip"
+          onClick={() => {
+            flyEndFiredRef.current = false;
+            setFlyingOff('left');
+          }}
+        >
+          <span className="card-deck-action-icon">✕</span>
+          <span className="card-deck-action-label">Skip</span>
+        </button>
+
+        {/* Progress bar */}
+        <div className="card-deck-progress">
+          <div
+            className="card-deck-progress-fill"
+            style={{ width: `${progress}%` }}
+          />
         </div>
-        <span className="card-deck-footer-hint hint-right">
-          explore
-          <span className="hint-arrow">→</span>
-        </span>
+
+        {/* Explore button */}
+        <button
+          className="card-deck-action card-deck-action-explore"
+          aria-label="Explore"
+          onClick={() => {
+            flyEndFiredRef.current = false;
+            setFlyingOff('right');
+          }}
+        >
+          <span className="card-deck-action-label">Explore</span>
+          <span className="card-deck-action-icon">→</span>
+        </button>
       </div>
     </div>
   );

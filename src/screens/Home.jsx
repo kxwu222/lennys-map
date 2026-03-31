@@ -44,7 +44,8 @@ export default function Home() {
 
   return (
     <div className="home">
-      {/* Returning user: compact banner */}
+
+      {/* ── Returning user compact banner ── */}
       {isReturning && lastThreads.length > 0 && (
         <div className="home-returning">
           <div className="home-returning-banner">
@@ -52,14 +53,14 @@ export default function Home() {
               className="home-returning-continue"
               onClick={() => navigate('/ask', { state: { question: lastThreads[0] } })}
             >
-              <span className="home-returning-continue-label">&larr; Continue:</span>
+              <span className="home-returning-continue-label">← Continue:</span>
               <span className="home-returning-continue-title">{lastThreads[0]}</span>
             </button>
             <span className="home-returning-or">or explore below</span>
           </div>
           {lastThreads.length > 1 && (
             <div className="home-chips-wrap">
-              <p className="home-section-label">Other recent threads</p>
+              <p className="home-section-label">Recent threads</p>
               <div className="home-chips-row">
                 {lastThreads.slice(1, 5).map((t, i) => (
                   <button
@@ -76,7 +77,7 @@ export default function Home() {
         </div>
       )}
 
-      {/* Lapsed user state */}
+      {/* ── Lapsed user state ── */}
       {isLapsed && (
         <div className="home-lapsed">
           <div className="home-lapsed-card">
@@ -93,7 +94,7 @@ export default function Home() {
                 navigate('/ask', { state: { question: random.question } });
               }}
             >
-              Show me something fresh &rarr;
+              Show me something fresh →
             </button>
           </div>
           {lastThreads.length > 0 && (
@@ -112,6 +113,19 @@ export default function Home() {
           )}
         </div>
       )}
+
+      {/* ── Section header ── */}
+      <div className="home-section-header">
+        <div className="home-section-header-left">
+          <span className="home-section-eyebrow">Today's Picks</span>
+          {/* {allCards.length > 0 && (
+            // <span className="home-section-badge">{allCards.length}</span>
+          )} */}
+        </div>
+        <span className="home-section-date">
+          {new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+        </span>
+      </div>
 
       <CardDeck cards={allCards} onExplore={handleExplore} />
     </div>

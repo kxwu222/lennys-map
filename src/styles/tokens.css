@@ -1,29 +1,41 @@
 :root {
-  /* Colours */
-  --color-dark: #2C2416;
+  /* ── Light surfaces ── */
+  --color-bg: #FBF8F3;
+  --color-surface: #FFFFFF;
+  --color-surface-2: #F5F0E8;
+  --color-surface-3: #EBE5DC;
+  --color-border: #E0D8CE;
+  --color-border-dark: rgba(44, 36, 22, 0.08);
+
+  /* ── Amber / brand ── */
   --color-amber: #C4783A;
   --color-amber-light: #E8A86A;
+  --color-amber-glow: rgba(196, 120, 58, 0.12);
+
+  /* ── Text ── */
+  --color-dark: #2C2416;
+  --color-text: #3A3021;
+  --color-muted: #8A7A68;
+  --color-muted-light: #A89888;
   --color-cream: #FBF8F3;
   --color-cream-mid: #F5F0E8;
   --color-cream-dark: #F0EBE1;
-  --color-border: #E0D8CE;
-  --color-muted: #A89580;
-  --color-text: #3D2E1E;
   --color-white: #FFFFFF;
 
-  /* Typography */
+  /* ── Typography ── */
   --font-display: 'Lora', serif;
   --font-body: 'DM Sans', sans-serif;
 
-  /* Radii */
-  --radius-card: 16px;
-  --radius-chip: 20px;
-  --radius-button: 10px;
+  /* ── Radii ── */
+  --radius-card: 24px;
+  --radius-chip: 999px;
+  --radius-button: 14px;
 
-  /* Border */
-  --border: 0.5px solid var(--color-border);
+  /* ── Border ── */
+  --border: 1px solid var(--color-border);
+  --border-dark: 1px solid var(--color-border-dark);
 
-  /* Spacing */
+  /* ── Spacing ── */
   --space-xs: 4px;
   --space-sm: 8px;
   --space-md: 16px;
@@ -31,9 +43,7 @@
   --space-xl: 32px;
   --space-2xl: 48px;
 
-  /* Tab bar */
-  --tab-bar-height: 56px;
-
-  /* Safe area */
+  /* ── Shell ── */
+  --tab-bar-height: 64px;
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 }

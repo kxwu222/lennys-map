@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "lennysdata": {
+      "type": "http",
+      "url": "https://mcp.lennysdata.com/mcp",
+      "headers": {
+        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzY29wZSI6Im1jcDpyZWFkIGFyY2hpdmU6c3RhcnRlciIsInRpZXIiOiJzdGFydGVyIiwiY2xpZW50X2lkIjoibGVubnlzZGF0YS1wZXJzb25hbCIsImtpbmQiOiJwZXJzb25hbCIsInJlc291cmNlIjoiaHR0cHM6Ly9tY3AubGVubnlzZGF0YS5jb20vbWNwIiwidmVyIjoxLCJpc3MiOiJodHRwczovL3d3dy5sZW5ueXNkYXRhLmNvbS8iLCJzdWIiOiJrZXNoaW53dTA4QGdtYWlsLmNvbSIsImF1ZCI6Imh0dHBzOi8vbWNwLmxlbm55c2RhdGEuY29tL21jcCIsImlhdCI6MTc3NDUyMjE1NCwiZXhwIjoxNzc3MTE0MTU0fQ.YZzJFquGywLZnZgtsUnvPy-9sPZnz1SkielADt5AFLY"
+      }
+    }
+  }
+}

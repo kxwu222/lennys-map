@@ -1,0 +1,39 @@
+:root {
+  /* Colours */
+  --color-dark: #2C2416;
+  --color-amber: #C4783A;
+  --color-amber-light: #E8A86A;
+  --color-cream: #FBF8F3;
+  --color-cream-mid: #F5F0E8;
+  --color-cream-dark: #F0EBE1;
+  --color-border: #E0D8CE;
+  --color-muted: #A89580;
+  --color-text: #3D2E1E;
+  --color-white: #FFFFFF;
+
+  /* Typography */
+  --font-display: 'Lora', serif;
+  --font-body: 'DM Sans', sans-serif;
+
+  /* Radii */
+  --radius-card: 16px;
+  --radius-chip: 20px;
+  --radius-button: 10px;
+
+  /* Border */
+  --border: 0.5px solid var(--color-border);
+
+  /* Spacing */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-2xl: 48px;
+
+  /* Tab bar */
+  --tab-bar-height: 56px;
+
+  /* Safe area */
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}

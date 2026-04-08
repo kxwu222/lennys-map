@@ -83,7 +83,20 @@ export default function SourceSheet({ sourceId, citedText, onClose, onAskQuestio
                 ? `${source.guest} joins ${source.source} to discuss ${source.title.toLowerCase()}. The conversation covers ${source.topics.slice(0, 3).join(', ')}.`
                 : `${source.source} explores ${source.title.toLowerCase()}, covering ${source.topics.slice(0, 3).join(', ')}.`}
             </p>
-            <p className="source-sheet-readtime">{source.readTime} min read</p>
+            <p className="source-sheet-readtime">{source.readTime} min {source.guest ? 'listen' : 'read'}</p>
+            {source.sourceUrl && (
+              <div className="source-sheet-sources">
+                <p className="source-sheet-zone-label">Sources</p>
+                <a
+                  href={source.sourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="source-sheet-source-link"
+                >
+                  Read on {source.source} ↗
+                </a>
+              </div>
+            )}
           </div>
 
           <div className="source-sheet-zone source-sheet-more">

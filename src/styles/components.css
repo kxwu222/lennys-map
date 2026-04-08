@@ -1990,6 +1990,23 @@
   margin-top: var(--space-md);
 }
 
+.source-sheet-sources {
+  margin-top: var(--space-md);
+}
+
+.source-sheet-source-link {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--color-accent);
+  text-decoration: none;
+  margin-top: 4px;
+}
+
+.source-sheet-source-link:hover {
+  text-decoration: underline;
+}
+
 .source-sheet-footer {
   display: flex;
   justify-content: space-between;

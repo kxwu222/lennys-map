@@ -37,13 +37,6 @@ export default function HeroCard({ card, onExplore, style, className = '', swipe
       {/* Top row: tag + date/social */}
       <div className="hero-card-top">
         <span className="hero-card-tag">{card.tag}</span>
-        {isFirst ? (
-          <span className="hero-card-date">
-            Today · {new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-          </span>
-        ) : (
-          <span className="hero-card-social">{card.socialLabel}</span>
-        )}
       </div>
 
       {/* Source */}
@@ -78,9 +71,9 @@ export default function HeroCard({ card, onExplore, style, className = '', swipe
       <div className="hero-card-bottom">
         <button
           className={`hero-card-explore${isExploring ? ' is-revealing' : ''}`}
-          onClick={() => onExplore?.(card)}
+        // onClick={() => onExplore?.(card)}
         >
-          Explore this idea →
+          Swipe right to explore →
         </button>
       </div>
     </div>

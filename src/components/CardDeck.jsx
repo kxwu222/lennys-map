@@ -125,7 +125,7 @@ export default function CardDeck({ cards, onExplore }) {
       {/* Footer: action buttons + progress bar */}
       <div className="card-deck-footer">
         {/* Skip button */}
-        <button
+        {/* <button
           className="card-deck-action card-deck-action-skip"
           aria-label="Skip"
           onClick={() => {
@@ -134,8 +134,8 @@ export default function CardDeck({ cards, onExplore }) {
           }}
         >
           <span className="card-deck-action-icon">✕</span>
-          <span className="card-deck-action-label">Skip</span>
-        </button>
+          <span className="card-deck-action-label">Swipe left to skip</span>
+        </button> */}
 
         {/* Progress bar */}
         <div className="card-deck-progress">
@@ -146,7 +146,7 @@ export default function CardDeck({ cards, onExplore }) {
         </div>
 
         {/* Explore button */}
-        <button
+        {/* <button
           className="card-deck-action card-deck-action-explore"
           aria-label="Explore"
           onClick={() => {
@@ -156,7 +156,7 @@ export default function CardDeck({ cards, onExplore }) {
         >
           <span className="card-deck-action-label">Explore</span>
           <span className="card-deck-action-icon">→</span>
-        </button>
+        </button> */}
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ const microFacts = [
   'Great product writing is invisible — it never makes you stop and think.',
 ];
 
-export default function LoadingState() {
+export default function LoadingState({ isResuming = false }) {
   const fact = microFacts[Math.floor(Math.random() * microFacts.length)];
   const sourceCount = getKBSize();
 
@@ -21,7 +21,11 @@ export default function LoadingState() {
           <span className="loading-dot" />
           <span className="loading-dot" />
         </div>
-        <p className="loading-label">Reading across {sourceCount} sources...</p>
+        <p className="loading-label">
+          {isResuming
+            ? 'Taking you back where you left off…'
+            : `Reading across ${sourceCount} sources...`}
+        </p>
       </div>
 
       <div className="loading-skeleton">

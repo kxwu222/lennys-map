@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CardDeck from '../components/CardDeck';
 import { getDailyDeck, SERENDIPITY_PROMPTS } from '../utils/metadata';
-import { getSettings, fl_get, fl_set } from '../utils/storage';
+import { getSettings, fl_get, fl_set, getThreads } from '../utils/storage';
 import { addExplorationNode } from '../utils/mapData';
 
 export default function Home() {
@@ -40,79 +40,10 @@ export default function Home() {
     ? [...deck, ...SERENDIPITY_PROMPTS.filter(p => !deck.find(d => d.sourceId === p.sourceId))]
     : [];
 
-  const lastThreads = fl_get('last_threads') || [];
+  const lastThreads = getThreads(); // normalised { text, date } objects
 
   return (
     <div className="home">
-
-      {/* ── Returning user compact banner ── */}
-      {isReturning && lastThreads.length > 0 && (
-        <div className="home-returning">
-          <div className="home-returning-banner">
-            <button
-              className="home-returning-continue"
-              onClick={() => navigate('/ask', { state: { question: lastThreads[0] } })}
-            >
-              <span className="home-returning-continue-label">← Continue:</span>
-              <span className="home-returning-continue-title">{lastThreads[0]}</span>
-            </button>
-            <span className="home-returning-or">or explore below</span>
-          </div>
-          {lastThreads.length > 1 && (
-            <div className="home-chips-wrap">
-              <p className="home-section-label">Recent threads</p>
-              <div className="home-chips-row">
-                {lastThreads.slice(1, 5).map((t, i) => (
-                  <button
-                    key={i}
-                    className="home-topic-chip"
-                    onClick={() => navigate('/ask', { state: { question: t } })}
-                  >
-                    {t}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      )}
-
-      {/* ── Lapsed user state ── */}
-      {isLapsed && (
-        <div className="home-lapsed">
-          <div className="home-lapsed-card">
-            <p className="home-lapsed-headline">
-              It's been a little while. No catching up required.
-            </p>
-            <p className="home-lapsed-sub">
-              Lenny's archive has been quietly growing. Pick something that sparks right now.
-            </p>
-            <button
-              className="home-lapsed-cta"
-              onClick={() => {
-                const random = SERENDIPITY_PROMPTS[Math.floor(Math.random() * SERENDIPITY_PROMPTS.length)];
-                navigate('/ask', { state: { question: random.question } });
-              }}
-            >
-              Show me something fresh →
-            </button>
-          </div>
-          {lastThreads.length > 0 && (
-            <div className="home-lapsed-threads">
-              <p className="home-section-label">Or pick up an old thread</p>
-              {lastThreads.slice(0, 3).map((t, i) => (
-                <button
-                  key={i}
-                  className="home-topic-chip"
-                  onClick={() => navigate('/ask', { state: { question: t } })}
-                >
-                  {t}
-                </button>
-              ))}
-            </div>
-          )}
-        </div>
-      )}
 
       {/* ── Section header ── */}
       <div className="home-section-header">
@@ -128,6 +59,55 @@ export default function Home() {
       </div>
 
       <CardDeck cards={allCards} onExplore={handleExplore} />
+
+      {/* ── Returning user and lapsed blocks (now below hero) ── */}
+      {isReturning && lastThreads.length > 0 && (
+        <div className="home-returning">
+          <p className="home-section-label">Pick back up</p>
+          <button
+            className="home-returning-continue"
+            onClick={() => navigate('/ask', { state: { question: lastThreads[0].text } })}
+          >
+            <span className="home-returning-continue-label">Continue:</span>
+            <span className="home-returning-continue-title">{lastThreads[0].text}</span>
+          </button>
+          {lastThreads.length > 1 && (
+            <div className="home-chips-wrap">
+              <p className="home-section-label">Recent threads</p>
+              <div className="home-chips-row">
+                {lastThreads.slice(1, 5).map((t, i) => (
+                  <button
+                    key={i}
+                    className="home-topic-chip"
+                    onClick={() => navigate('/ask', { state: { question: t.text } })}
+                  >
+                    {t.text}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {isLapsed && (
+        <div className="home-lapsed">
+          <div className="home-lapsed-card">
+            <p className="home-lapsed-headline">Welcome back</p>
+            <p className="home-lapsed-sub">Lenny's archive has been quietly growing.</p>
+            <button
+              className="home-lapsed-cta"
+              onClick={() => {
+                const random = SERENDIPITY_PROMPTS[Math.floor(Math.random() * SERENDIPITY_PROMPTS.length)];
+                navigate('/ask', { state: { question: random.question } });
+              }}
+            >
+              Show me something fresh →
+            </button>
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }

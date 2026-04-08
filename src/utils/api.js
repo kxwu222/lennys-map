@@ -24,7 +24,7 @@ function buildSystemPrompt(relevantSources) {
   const depth = depthMap[settings.defaultDepth] || depthMap['5min'];
 
   const format = `Return a JSON object with these exact fields:
-- hook: One sentence only (max 20 words). The sharpest, most surprising insight — make the user want to keep reading.
+- hook: One sentence only (max 20 words). Only include if this genuinely surprises or reframes the topic — something the user wouldn't expect. For follow-up questions, simple clarifications, or when the body already opens strongly, return an empty string "".
 - body: Exactly 2 short paragraphs. Each paragraph is 2–3 sentences maximum. No preamble, no "here's why", no restating the question. Start with the insight, not the context.
 - highlight: One sentence (max 20 words). The single most actionable or memorable idea from the answer.
 - sources: Array of { id, name, label } for each source used.

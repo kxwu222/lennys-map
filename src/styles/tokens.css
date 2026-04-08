@@ -44,6 +44,7 @@
   --space-2xl: 48px;
 
   /* ── Shell ── */
+  --topbar-height: 62px;
   --tab-bar-height: 64px;
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 }

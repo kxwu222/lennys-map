@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import CardDeck from '../components/CardDeck';
 import { getDailyDeck, SERENDIPITY_PROMPTS } from '../utils/metadata';
-import { getSettings, fl_get, fl_set } from '../utils/storage';
+import { getSettings, fl_get, fl_set, getThreads } from '../utils/storage';
 import { addExplorationNode } from '../utils/mapData';
 
 export default function Home() {
@@ -40,7 +40,7 @@ export default function Home() {
     ? [...deck, ...SERENDIPITY_PROMPTS.filter(p => !deck.find(d => d.sourceId === p.sourceId))]
     : [];
 
-  const lastThreads = fl_get('last_threads') || [];
+  const lastThreads = getThreads(); // normalised { text, date } objects
 
   return (
     <div className="home">
@@ -66,10 +66,10 @@ export default function Home() {
           <p className="home-section-label">Pick back up</p>
           <button
             className="home-returning-continue"
-            onClick={() => navigate('/ask', { state: { question: lastThreads[0] } })}
+            onClick={() => navigate('/ask', { state: { question: lastThreads[0].text } })}
           >
             <span className="home-returning-continue-label">Continue:</span>
-            <span className="home-returning-continue-title">{lastThreads[0]}</span>
+            <span className="home-returning-continue-title">{lastThreads[0].text}</span>
           </button>
           {lastThreads.length > 1 && (
             <div className="home-chips-wrap">
@@ -79,9 +79,9 @@ export default function Home() {
                   <button
                     key={i}
                     className="home-topic-chip"
-                    onClick={() => navigate('/ask', { state: { question: t } })}
+                    onClick={() => navigate('/ask', { state: { question: t.text } })}
                   >
-                    {t}
+                    {t.text}
                   </button>
                 ))}
               </div>

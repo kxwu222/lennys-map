@@ -1,10 +1,10 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { useLocation } from 'react-router-dom';
 import ChatBubble from '../components/ChatBubble';
 import LoadingState from '../components/LoadingState';
 import SourceSheet from '../components/SourceSheet';
 import { queryKnowledgeBase, isApiConfigured } from '../utils/api';
-import { fl_get, fl_set } from '../utils/storage';
+import { saveThread, getDailyThreads, formatThreadAge, saveConversation, getConversation } from '../utils/storage';
 import { addExplorationNode } from '../utils/mapData';
 import { SERENDIPITY_PROMPTS } from '../utils/metadata';
 
@@ -15,21 +15,40 @@ export default function Ask() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [sourceSheet, setSourceSheet] = useState(null);
-  const messagesEndRef = useRef(null);
+  const [isResuming, setIsResuming] = useState(false);
+  const messagesContainerRef = useRef(null);
+  const lastMessageRef = useRef(null);
+  const lastUserBubbleRef = useRef(null);
   const inputRef = useRef(null);
   const handledQuestionRef = useRef(null);
+  const prevLoadingRef = useRef(false);
 
   useEffect(() => {
     const q = location.state?.question;
-    // Guard: skip if no question, or already handled this exact question (StrictMode double-mount)
     if (!q || q === handledQuestionRef.current) return;
     handledQuestionRef.current = q;
     submitQuestion(q);
     window.history.replaceState({}, '');
   }, [location.state?.question]);
 
-  useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  useLayoutEffect(() => {
+    const container = messagesContainerRef.current;
+    if (!container) return;
+
+    const wasLoading = prevLoadingRef.current;
+    prevLoadingRef.current = loading;
+
+    if (loading && !wasLoading) {
+      // user just submitted — scroll loading indicator into view
+      container.scrollTop = container.scrollHeight;
+    } else if (!loading && wasLoading) {
+      // response arrived — scroll to the user's question bubble
+      const userBubble = lastUserBubbleRef.current;
+      if (userBubble) {
+        const offset = userBubble.offsetTop - container.offsetTop - 24;
+        container.scrollTo({ top: offset, behavior: 'smooth' });
+      }
+    }
   }, [messages, loading]);
 
   async function submitQuestion(question) {
@@ -39,10 +58,7 @@ export default function Ask() {
     setLoading(true);
     setError(null);
 
-    // Save to last threads
-    const threads = fl_get('last_threads') || [];
-    const updated = [question, ...threads.filter(t => t !== question)].slice(0, 5);
-    fl_set('last_threads', updated);
+    saveThread(question);
 
     try {
       const data = await queryKnowledgeBase(question);
@@ -54,17 +70,23 @@ export default function Ask() {
             id: src.id,
             label: src.name,
             category: src.label || 'General',
-            relatedIds: data.sources.filter(s => s.id !== src.id).map(s => s.id),
+            related: data.sources
+              .filter(s => s.id !== src.id)
+              .map(s => ({ id: s.id, question })),
           });
         });
       }
 
-      setMessages(prev => [...prev, {
-        role: 'assistant',
-        data,
-        onFollowUp: q => submitQuestion(q),
-        onSourceTap: src => setSourceSheet({ sourceId: src.id, citedText: data.highlight }),
-      }]);
+      setMessages(prev => {
+        const next = [...prev, {
+          role: 'assistant',
+          data,
+          onFollowUp: q => submitQuestion(q),
+          onSourceTap: src => setSourceSheet({ sourceId: src.id, citedText: data.highlight }),
+        }];
+        saveConversation(question, next);
+        return next;
+      });
     } catch (err) {
       if (err.message === 'NOT_CONFIGURED') {
         setMessages(prev => [...prev, {
@@ -94,12 +116,39 @@ export default function Ask() {
     submitQuestion(random.question);
   }
 
-  const lastThreads = fl_get('last_threads') || [];
+  function handleThreadResume(thread) {
+    const saved = getConversation(thread.text);
+    if (saved) {
+      // re-attach callbacks to assistant messages
+      const restored = saved.messages.map(m => {
+        if (m.role !== 'assistant' || !m.data) return m;
+        return {
+          ...m,
+          onFollowUp: q => submitQuestion(q),
+          onSourceTap: src => setSourceSheet({ sourceId: src.id, citedText: m.data.highlight }),
+        };
+      });
+      setIsResuming(true);
+      setMessages(restored);
+      setTimeout(() => setIsResuming(false), 2000);
+    } else {
+      submitQuestion(thread.text);
+    }
+  }
+
+  const dailyThreads = getDailyThreads(SERENDIPITY_PROMPTS);
   const isEmpty = messages.length === 0 && !loading;
 
   return (
-    <div className="ask">
-      <div className="ask-messages">
+    <div className={`ask${sourceSheet ? ' ask--with-source' : ''}`}>
+      <div className="ask-chat">
+      <div className="ask-messages" ref={messagesContainerRef}>
+        {isResuming && (
+          <div className="ask-resumed-notice">
+            <span>↩ Restored from your last session</span>
+          </div>
+        )}
+
         {isEmpty && (
           <div className="ask-empty">
             <h2 className="ask-empty-headline">What's on your mind?</h2>
@@ -107,17 +156,27 @@ export default function Ask() {
               Ask anything from Lenny's podcasts and newsletters — or pick a thread below.
             </p>
 
-            {lastThreads.length > 0 && (
+            {dailyThreads.length > 0 && (
               <div className="ask-empty-threads">
-                {lastThreads.slice(0, 3).map((t, i) => (
-                  <button
-                    key={i}
-                    className="ask-thread-chip"
-                    onClick={() => submitQuestion(t)}
-                  >
-                    {t}
-                  </button>
-                ))}
+                {dailyThreads.map((t, i) => {
+                  const isHistory = t.fresh === false;
+                  const explored = isHistory && !!getConversation(t.text);
+                  return (
+                    <button
+                      key={i}
+                      className={`ask-thread-chip${explored ? ' ask-thread-chip--explored' : ' ask-thread-chip--new'}`}
+                      onClick={() => handleThreadResume(t)}
+                    >
+                      <span className="ask-thread-chip-text">{t.text}</span>
+                      {explored
+                        ? <span className="ask-thread-chip-badge ask-thread-chip-badge--explored">↩ continue</span>
+                        : isHistory
+                          ? <span className="ask-thread-chip-badge ask-thread-chip-badge--new">new</span>
+                          : <span className="ask-thread-chip-badge ask-thread-chip-badge--fresh">today</span>
+                      }
+                    </button>
+                  );
+                })}
               </div>
             )}
 
@@ -154,11 +213,13 @@ export default function Ask() {
               </div>
             );
           }
-          return <ChatBubble key={i} message={msg} />;
+          const isLast = i === messages.length - 1;
+          const priorAssistantCount = messages.slice(0, i).filter(m => m.role === 'assistant').length;
+          const isLastUser = msg.role === 'user' && !messages.slice(i + 1).some(m => m.role === 'user');
+          return <ChatBubble key={i} message={msg} isFollowUp={priorAssistantCount > 0} ref={isLastUser ? lastUserBubbleRef : isLast ? lastMessageRef : null} />;
         })}
 
-        {loading && <LoadingState />}
-        <div ref={messagesEndRef} />
+        {loading && <LoadingState isResuming={isResuming} />}
       </div>
 
       <form className="ask-input-bar" onSubmit={handleSubmit}>
@@ -174,6 +235,7 @@ export default function Ask() {
           &uarr;
         </button>
       </form>
+      </div>
 
       {sourceSheet && (
         <SourceSheet

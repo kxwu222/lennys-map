@@ -1,11 +1,32 @@
 import { useRef, useState } from 'react';
 import { getSourceById } from '../utils/metadata';
 
+const MIN_WIDTH = 300;
+const MAX_WIDTH = 600;
+
 export default function SourceSheet({ sourceId, citedText, onClose, onAskQuestion }) {
   const source = getSourceById(sourceId);
   const sheetRef = useRef(null);
   const dragStart = useRef(null);
   const [translateY, setTranslateY] = useState(0);
+  const [panelWidth, setPanelWidth] = useState(380);
+  const [resizeActive, setResizeActive] = useState(false);
+
+  function handleResizeMouseDown(e) {
+    e.preventDefault();
+    setResizeActive(true);
+    const onMove = (e) => {
+      const newWidth = Math.min(MAX_WIDTH, Math.max(MIN_WIDTH, window.innerWidth - e.clientX));
+      setPanelWidth(newWidth);
+    };
+    const onUp = () => {
+      setResizeActive(false);
+      document.removeEventListener('mousemove', onMove);
+      document.removeEventListener('mouseup', onUp);
+    };
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onUp);
+  }
 
   if (!source) return null;
 
@@ -34,7 +55,7 @@ export default function SourceSheet({ sourceId, citedText, onClose, onAskQuestio
   ];
 
   return (
-    <div className="source-sheet-backdrop" onClick={onClose}>
+    <div className="source-sheet-backdrop" onClick={onClose} style={window.innerWidth >= 768 ? { width: panelWidth } : undefined}>
       <div
         className="source-sheet"
         ref={sheetRef}
@@ -44,6 +65,11 @@ export default function SourceSheet({ sourceId, citedText, onClose, onAskQuestio
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
+        <div
+          className={`resize-handle${resizeActive ? ' resize-handle--active' : ''}`}
+          style={{ left: 0 }}
+          onMouseDown={handleResizeMouseDown}
+        />
         <div className="source-sheet-handle" />
 
         <div className="source-sheet-header">
@@ -83,8 +109,7 @@ export default function SourceSheet({ sourceId, citedText, onClose, onAskQuestio
                 ? `${source.guest} joins ${source.source} to discuss ${source.title.toLowerCase()}. The conversation covers ${source.topics.slice(0, 3).join(', ')}.`
                 : `${source.source} explores ${source.title.toLowerCase()}, covering ${source.topics.slice(0, 3).join(', ')}.`}
             </p>
-            <p className="source-sheet-readtime">{source.readTime} min {source.guest ? 'listen' : 'read'}</p>
-            {source.sourceUrl && (
+{source.sourceUrl && (
               <div className="source-sheet-sources">
                 <p className="source-sheet-zone-label">Sources</p>
                 <a

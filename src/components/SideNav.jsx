@@ -1,4 +1,5 @@
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useRef, useState } from 'react';
 import { getSettings } from '../utils/storage';
 
 const tabs = [
@@ -6,6 +7,9 @@ const tabs = [
     { path: '/ask', label: 'Ask', icon: '◉', isAsk: true },
     { path: '/map', label: 'Map', icon: '✦' },
 ];
+
+const MIN_WIDTH = 180;
+const MAX_WIDTH = 400;
 
 export default function SideNav() {
     const location = useLocation();
@@ -15,8 +19,31 @@ export default function SideNav() {
         ? settings.role.split(' ').slice(0, 2).map(w => w[0]?.toUpperCase()).join('')
         : 'LM';
 
+    const [width, setWidth] = useState(260);
+    const dragging = useRef(false);
+    const [active, setActive] = useState(false);
+
+    function handleMouseDown(e) {
+        e.preventDefault();
+        dragging.current = true;
+        setActive(true);
+        const onMove = (e) => {
+            if (!dragging.current) return;
+            const newWidth = Math.min(MAX_WIDTH, Math.max(MIN_WIDTH, e.clientX));
+            setWidth(newWidth);
+        };
+        const onUp = () => {
+            dragging.current = false;
+            setActive(false);
+            document.removeEventListener('mousemove', onMove);
+            document.removeEventListener('mouseup', onUp);
+        };
+        document.addEventListener('mousemove', onMove);
+        document.addEventListener('mouseup', onUp);
+    }
+
     return (
-        <aside className="sidenav">
+        <aside className="sidenav" style={{ width }}>
             <div className="sidenav-top" onClick={() => navigate('/')}>
                 <div className="sidenav-logo">
                     <span className="sidenav-logo-icon">◆</span>
@@ -49,6 +76,12 @@ export default function SideNav() {
                     </div>
                 </button>
             </div>
+
+            <div
+                className={`resize-handle${active ? ' resize-handle--active' : ''}`}
+                style={{ right: 0 }}
+                onMouseDown={handleMouseDown}
+            />
         </aside>
     );
 }

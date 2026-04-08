@@ -13,7 +13,7 @@ const roleChips = [
   'AI researcher',
 ];
 
-const stepDotColors = ['#D4874D', '#6BAF6E', '#5A8FC4', '#8B6EB5'];
+const stepDotColors = ['#F0B87A', '#E8914A', '#D4874D', '#C8622A'];
 
 export default function Onboarding() {
   const [step, setStep] = useState(1);

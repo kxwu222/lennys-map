@@ -5,7 +5,7 @@ export function addExplorationNode(concept) {
     id: concept.id,
     label: concept.label,
     category: concept.category,
-    relatedIds: concept.relatedIds || [],
+    related: concept.related || [],
   });
 }
 
@@ -13,17 +13,27 @@ export function getGraphData() {
   const nodes = getNodes();
   const nodeMap = new Set(nodes.map(n => n.id));
 
-  const edges = [];
+  const edgeMap = {};
   nodes.forEach(node => {
-    (node.relatedIds || []).forEach(relId => {
-      if (nodeMap.has(relId)) {
-        const edgeId = [node.id, relId].sort().join('--');
-        if (!edges.find(e => e.id === edgeId)) {
-          edges.push({ id: edgeId, source: node.id, target: relId });
-        }
+    // Support both new `related` and legacy `relatedIds`
+    const related = node.related ||
+      (node.relatedIds || []).map(id => ({ id, question: null }));
+    related.forEach(r => {
+      if (!nodeMap.has(r.id)) return;
+      const edgeId = [node.id, r.id].sort().join('--');
+      if (!edgeMap[edgeId]) {
+        edgeMap[edgeId] = { id: edgeId, source: node.id, target: r.id, questions: [] };
+      }
+      if (r.question && !edgeMap[edgeId].questions.includes(r.question)) {
+        edgeMap[edgeId].questions.push(r.question);
       }
     });
   });
+
+  const edges = Object.values(edgeMap).map(e => ({
+    ...e,
+    weight: Math.max(1, e.questions.length),
+  }));
 
   return { nodes, edges };
 }

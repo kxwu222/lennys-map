@@ -20,11 +20,10 @@ function AppLayout({ children }) {
           <TopBar />
         </div>
         <main className="app-main">{children}</main>
-        <div className="mobile-only">
-          <TabBar />
-        </div>
       </div>
-
+      <div className="mobile-only">
+        <TabBar />
+      </div>
     </div>
   );
 }

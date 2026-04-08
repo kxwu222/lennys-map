@@ -1,7 +1,9 @@
-export default function ChatBubble({ message }) {
+import { forwardRef } from 'react';
+
+const ChatBubble = forwardRef(function ChatBubble({ message, isFollowUp = false }, ref) {
   if (message.role === 'user') {
     return (
-      <div className="chat-bubble chat-bubble-user">
+      <div className="chat-bubble chat-bubble-user" ref={ref}>
         <p>{message.content}</p>
       </div>
     );
@@ -10,9 +12,14 @@ export default function ChatBubble({ message }) {
   const data = message.data;
   if (!data) return null;
 
+  const bodyOpening = data.body?.split('\n\n')[0]?.slice(0, 60).toLowerCase() ?? '';
+  const hookText = data.hook?.toLowerCase() ?? '';
+  const hookIsDuplicate = hookText && bodyOpening && bodyOpening.startsWith(hookText.slice(0, 40));
+  const showHook = !isFollowUp && !!data.hook && !hookIsDuplicate;
+
   if (data.outOfScope) {
     return (
-      <div className="chat-bubble chat-bubble-assistant">
+      <div className="chat-bubble chat-bubble-assistant" ref={ref}>
         <h3 className="chat-oos-heading">Outside my knowledge base</h3>
         <p className="chat-oos-body">
           I only draw from Lenny Rachitsky's podcasts and newsletters about product, UX, and AI.
@@ -34,10 +41,10 @@ export default function ChatBubble({ message }) {
   }
 
   return (
-    <div className="chat-bubble chat-bubble-assistant">
+    <div className="chat-bubble chat-bubble-assistant" ref={ref}>
 
-      {/* Hook — one-sentence opener */}
-      {data.hook && (
+      {/* Hook — only on first response or when genuinely reframing */}
+      {showHook && (
         <p className="chat-hook">{data.hook}</p>
       )}
 
@@ -102,4 +109,6 @@ export default function ChatBubble({ message }) {
 
     </div>
   );
-}
+});
+
+export default ChatBubble;

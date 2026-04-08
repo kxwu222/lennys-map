@@ -2,7 +2,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import TopBar from './components/TopBar';
 import TabBar from './components/TabBar';
+import SideNav from './components/SideNav';
 import Onboarding from './screens/Onboarding';
+
 import Home from './screens/Home';
 import Ask from './screens/Ask';
 import MapScreen from './screens/Map';
@@ -12,12 +14,21 @@ import { isOnboarded, updateSettings, incrementSessions } from './utils/storage'
 function AppLayout({ children }) {
   return (
     <div className="app-layout">
-      <TopBar />
-      <main className="app-main">{children}</main>
-      <TabBar />
+      <SideNav />
+      <div className="app-viewport">
+        <div className="mobile-only">
+          <TopBar />
+        </div>
+        <main className="app-main">{children}</main>
+        <div className="mobile-only">
+          <TabBar />
+        </div>
+      </div>
+
     </div>
   );
 }
+
 
 export default function App() {
   const [onboarded, setOnboardedState] = useState(isOnboarded());
@@ -50,7 +61,7 @@ export default function App() {
             <Route path="/" element={<AppLayout><Home /></AppLayout>} />
             <Route path="/ask" element={<AppLayout><Ask /></AppLayout>} />
             <Route path="/map" element={<AppLayout><MapScreen /></AppLayout>} />
-            <Route path="/settings" element={<Settings />} />
+            <Route path="/settings" element={<AppLayout><Settings /></AppLayout>} />
           </>
         )}
       </Routes>

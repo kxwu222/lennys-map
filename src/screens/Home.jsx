@@ -45,19 +45,32 @@ export default function Home() {
   return (
     <div className="home">
 
-      {/* ── Returning user compact banner ── */}
+      {/* ── Section header ── */}
+      <div className="home-section-header">
+        <div className="home-section-header-left">
+          <span className="home-section-eyebrow">Today's Picks</span>
+          {/* {allCards.length > 0 && (
+            // <span className="home-section-badge">{allCards.length}</span>
+          )} */}
+        </div>
+        <span className="home-section-date">
+          {new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+        </span>
+      </div>
+
+      <CardDeck cards={allCards} onExplore={handleExplore} />
+
+      {/* ── Returning user and lapsed blocks (now below hero) ── */}
       {isReturning && lastThreads.length > 0 && (
         <div className="home-returning">
-          <div className="home-returning-banner">
-            <button
-              className="home-returning-continue"
-              onClick={() => navigate('/ask', { state: { question: lastThreads[0] } })}
-            >
-              <span className="home-returning-continue-label">← Continue:</span>
-              <span className="home-returning-continue-title">{lastThreads[0]}</span>
-            </button>
-            <span className="home-returning-or">or explore below</span>
-          </div>
+          <p className="home-section-label">Pick back up</p>
+          <button
+            className="home-returning-continue"
+            onClick={() => navigate('/ask', { state: { question: lastThreads[0] } })}
+          >
+            <span className="home-returning-continue-label">Continue:</span>
+            <span className="home-returning-continue-title">{lastThreads[0]}</span>
+          </button>
           {lastThreads.length > 1 && (
             <div className="home-chips-wrap">
               <p className="home-section-label">Recent threads</p>
@@ -77,16 +90,11 @@ export default function Home() {
         </div>
       )}
 
-      {/* ── Lapsed user state ── */}
       {isLapsed && (
         <div className="home-lapsed">
           <div className="home-lapsed-card">
-            <p className="home-lapsed-headline">
-              It's been a little while. No catching up required.
-            </p>
-            <p className="home-lapsed-sub">
-              Lenny's archive has been quietly growing. Pick something that sparks right now.
-            </p>
+            <p className="home-lapsed-headline">Welcome back</p>
+            <p className="home-lapsed-sub">Lenny's archive has been quietly growing.</p>
             <button
               className="home-lapsed-cta"
               onClick={() => {
@@ -97,37 +105,9 @@ export default function Home() {
               Show me something fresh →
             </button>
           </div>
-          {lastThreads.length > 0 && (
-            <div className="home-lapsed-threads">
-              <p className="home-section-label">Or pick up an old thread</p>
-              {lastThreads.slice(0, 3).map((t, i) => (
-                <button
-                  key={i}
-                  className="home-topic-chip"
-                  onClick={() => navigate('/ask', { state: { question: t } })}
-                >
-                  {t}
-                </button>
-              ))}
-            </div>
-          )}
         </div>
       )}
 
-      {/* ── Section header ── */}
-      <div className="home-section-header">
-        <div className="home-section-header-left">
-          <span className="home-section-eyebrow">Today's Picks</span>
-          {/* {allCards.length > 0 && (
-            // <span className="home-section-badge">{allCards.length}</span>
-          )} */}
-        </div>
-        <span className="home-section-date">
-          {new Date().toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-        </span>
-      </div>
-
-      <CardDeck cards={allCards} onExplore={handleExplore} />
     </div>
   );
 }

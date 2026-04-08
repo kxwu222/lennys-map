@@ -14,7 +14,7 @@ export const METADATA_INDEX = [
     published: "2025-12-16",
     filename: "newsletters/how-to-build-your-pm-second-brain-with-chatgpt.md",
     socialLabel: "Use AI to amplify your craft",
-    sourceUrl: "https://www.lennysnewsletter.com/p/how-to-build-your-pm-second-brain-with-chatgpt",
+    sourceUrl: "https://www.lennysnewsletter.com/p/how-to-build-your-pm-second-brain",
   },
   {
     id: "claude-code-more",
@@ -26,7 +26,7 @@ export const METADATA_INDEX = [
     published: "2025-10-14",
     filename: "newsletters/everyone-should-be-using-claude-code-more.md",
     socialLabel: "50 ways non-technical people use it",
-    sourceUrl: "https://www.lennysnewsletter.com/p/everyone-should-be-using-claude-code-more",
+    sourceUrl: "https://www.lennysnewsletter.com/p/everyone-should-be-using-claude-code",
   },
   {
     id: "essential-reading-1",
@@ -38,7 +38,7 @@ export const METADATA_INDEX = [
     published: "2025-07-15",
     filename: "newsletters/essential-reading-for-product-builders-part-1.md",
     socialLabel: "7 timeless essays",
-    sourceUrl: "https://www.lennysnewsletter.com/p/essential-reading-for-product-builders-part-1",
+    sourceUrl: "https://www.lennysnewsletter.com/p/essential-reading-for-product-builderspart",
   },
   {
     id: "vibe-coding",
@@ -50,7 +50,7 @@ export const METADATA_INDEX = [
     published: "2025-07-08",
     filename: "newsletters/what-people-are-vibe-coding-and-actually-using.md",
     socialLabel: "50+ examples to inspire you",
-    sourceUrl: "https://www.lennysnewsletter.com/p/what-people-are-vibe-coding-and-actually-using",
+    sourceUrl: "https://www.lennysnewsletter.com/p/what-people-are-vibe-coding-and-actually",
   },
   {
     id: "ai-glossary",
@@ -74,7 +74,7 @@ export const METADATA_INDEX = [
     published: "2025-05-13",
     filename: "newsletters/state-of-the-product-job-market-in-2025.md",
     socialLabel: "A lot to be optimistic about",
-    sourceUrl: "https://www.lennysnewsletter.com/p/state-of-the-product-job-market-in-2025",
+    sourceUrl: "https://www.lennysnewsletter.com/p/state-of-the-product-job-market-in",
   },
   {
     id: "pm-guide-evals",
@@ -86,7 +86,7 @@ export const METADATA_INDEX = [
     published: "2025-04-08",
     filename: "newsletters/beyond-vibe-checks-a-pms-complete-guide-to-evals.md",
     socialLabel: "The skill that makes or breaks AI products",
-    sourceUrl: "https://www.lennysnewsletter.com/p/beyond-vibe-checks-a-pms-complete-guide-to-evals",
+    sourceUrl: "https://www.lennysnewsletter.com/p/beyond-vibe-checks-a-pms-complete",
   },
   {
     id: "ai-prototyping",
@@ -98,7 +98,7 @@ export const METADATA_INDEX = [
     published: "2025-01-07",
     filename: "newsletters/a-guide-to-ai-prototyping-for-product-managers.md",
     socialLabel: "Idea to prototype in minutes",
-    sourceUrl: "https://www.lennysnewsletter.com/p/a-guide-to-ai-prototyping-for-product-managers",
+    sourceUrl: "https://www.lennysnewsletter.com/p/a-guide-to-ai-prototyping-for-product",
   },
   {
     id: "pm-unfair-role",
@@ -110,7 +110,7 @@ export const METADATA_INDEX = [
     published: "2024-11-12",
     filename: "newsletters/product-manager-is-an-unfair-role-so-work-unfairly.md",
     socialLabel: "Thrive in the great flattening",
-    sourceUrl: "https://www.lennysnewsletter.com/p/product-manager-is-an-unfair-role-so-work-unfairly",
+    sourceUrl: "https://www.lennysnewsletter.com/p/product-manager-is-an-unfair-role",
   },
   {
     id: "duolingo-growth",
@@ -136,7 +136,7 @@ export const METADATA_INDEX = [
     published: "2026-03-22",
     filename: "podcasts/jessica-fain.md",
     socialLabel: "The skill AI can't replace",
-    sourceUrl: "https://www.lennysnewsletter.com/p/jessica-fain",
+    sourceUrl: "https://www.lennysnewsletter.com/p/the-art-of-influence-jessica-fain",
   },
   {
     id: "claire-vo",
@@ -148,7 +148,7 @@ export const METADATA_INDEX = [
     published: "2026-03-29",
     filename: "podcasts/claire-vo.md",
     socialLabel: "From skeptic to AI evangelist",
-    sourceUrl: "https://www.lennysnewsletter.com/p/claire-vo",
+    sourceUrl: "https://www.lennysnewsletter.com/p/how-openclaw-changed-my-life-claire-vo",
   },
   {
     id: "jenny-wen",
@@ -160,7 +160,7 @@ export const METADATA_INDEX = [
     published: "2026-03-01",
     filename: "podcasts/jenny-wen.md",
     socialLabel: "Keeping up with the AI pace",
-    sourceUrl: "https://www.lennysnewsletter.com/p/jenny-wen",
+    sourceUrl: "https://www.lennysnewsletter.com/p/the-design-process-is-dead",
   },
   {
     id: "jeetu-patel",
@@ -172,7 +172,7 @@ export const METADATA_INDEX = [
     published: "2026-02-26",
     filename: "podcasts/jeetu-patel.md",
     socialLabel: "Industry insider perspective",
-    sourceUrl: "https://www.lennysnewsletter.com/p/jeetu-patel",
+    sourceUrl: "https://www.lennysnewsletter.com/p/ai-is-critical-for-humanitys-survival",
   },
   {
     id: "boris-cherny",
@@ -184,7 +184,7 @@ export const METADATA_INDEX = [
     published: "2026-02-19",
     filename: "podcasts/boris-cherny.md",
     socialLabel: "The future of software",
-    sourceUrl: "https://www.lennysnewsletter.com/p/boris-cherny",
+    sourceUrl: "https://www.lennysnewsletter.com/p/head-of-claude-code-what-happens",
   },
   {
     id: "brian-halligan",
@@ -196,7 +196,7 @@ export const METADATA_INDEX = [
     published: "2026-02-15",
     filename: "podcasts/brian-halligan.md",
     socialLabel: "Sequoia CEO coach wisdom",
-    sourceUrl: "https://www.lennysnewsletter.com/p/brian-halligan",
+    sourceUrl: "https://www.lennysnewsletter.com/p/sequoia-ceo-coach-why-its-never-been",
   },
   {
     id: "lazar-jovanovic",
@@ -208,7 +208,7 @@ export const METADATA_INDEX = [
     published: "2026-02-08",
     filename: "podcasts/lazar-jovanovic.md",
     socialLabel: "A new AI-era job",
-    sourceUrl: "https://www.lennysnewsletter.com/p/lazar-jovanovic",
+    sourceUrl: "https://www.lennysnewsletter.com/p/getting-paid-to-vibe-code",
   },
   {
     id: "dr-becky-kennedy",
@@ -220,7 +220,7 @@ export const METADATA_INDEX = [
     published: "2026-02-01",
     filename: "podcasts/dr-becky-kennedy.md",
     socialLabel: "Unexpectedly practical",
-    sourceUrl: "https://www.lennysnewsletter.com/p/dr-becky-kennedy",
+    sourceUrl: "https://www.lennysnewsletter.com/p/dr-becky-on-the-surprising-overlap",
   },
   {
     id: "marc-andreessen",
@@ -232,7 +232,7 @@ export const METADATA_INDEX = [
     published: "2026-01-29",
     filename: "podcasts/marc-andreessen.md",
     socialLabel: "Most shared this quarter",
-    sourceUrl: "https://www.lennysnewsletter.com/p/marc-andreessen",
+    sourceUrl: "https://www.lennysnewsletter.com/p/marc-andreessen-the-real-ai-boom",
   },
   {
     id: "jason-cohen",
@@ -244,7 +244,7 @@ export const METADATA_INDEX = [
     published: "2026-01-25",
     filename: "podcasts/jason-cohen.md",
     socialLabel: "2x unicorn founder's framework",
-    sourceUrl: "https://www.lennysnewsletter.com/p/jason-cohen",
+    sourceUrl: "https://www.lennysnewsletter.com/p/why-your-product-stopped-growing",
   },
   {
     id: "zevi-arnovitz",
@@ -256,7 +256,7 @@ export const METADATA_INDEX = [
     published: "2026-01-18",
     filename: "podcasts/zevi-arnovitz.md",
     socialLabel: "Build real products without code",
-    sourceUrl: "https://www.lennysnewsletter.com/p/zevi-arnovitz",
+    sourceUrl: "https://www.lennysnewsletter.com/p/the-non-technical-pms-guide-to-building-with-cursor",
   },
   {
     id: "sam-lessin",
@@ -268,7 +268,7 @@ export const METADATA_INDEX = [
     published: "2026-01-15",
     filename: "podcasts/sam-lessin.md",
     socialLabel: "Show up with a low heart rate",
-    sourceUrl: "https://www.lennysnewsletter.com/p/sam-lessin",
+    sourceUrl: "https://www.lennysnewsletter.com/p/silicon-valleys-missing-etiquette-playbook",
   },
   {
     id: "alexander-embiricos",
@@ -280,7 +280,7 @@ export const METADATA_INDEX = [
     published: "2026-01-12",
     filename: "podcasts/alexander-embiricos.md",
     socialLabel: "Advanced context engineering",
-    sourceUrl: "https://www.lennysnewsletter.com/p/alexander-embiricos",
+    sourceUrl: "https://www.lennysnewsletter.com/p/a-full-software-engineering-teammate",
   },
   {
     id: "molly-graham",
@@ -292,7 +292,7 @@ export const METADATA_INDEX = [
     published: "2026-01-04",
     filename: "podcasts/molly-graham.md",
     socialLabel: "From Zuckerberg to Bret Taylor",
-    sourceUrl: "https://www.lennysnewsletter.com/p/molly-graham",
+    sourceUrl: "https://www.lennysnewsletter.com/p/the-high-growth-handbook-molly-graham",
   },
   {
     id: "jason-lemkin",
@@ -304,7 +304,7 @@ export const METADATA_INDEX = [
     published: "2026-01-01",
     filename: "podcasts/jason-m-lemkin.md",
     socialLabel: "SaaStr's boldest experiment",
-    sourceUrl: "https://www.lennysnewsletter.com/p/jason-m-lemkin",
+    sourceUrl: "https://www.lennysnewsletter.com/p/we-replaced-our-sales-team-with-20-ai-agents",
   },
   {
     id: "matt-macinnis",
@@ -316,7 +316,7 @@ export const METADATA_INDEX = [
     published: "2025-12-28",
     filename: "podcasts/matt-macinnis.md",
     socialLabel: "Rippling CPO's playbook",
-    sourceUrl: "https://www.lennysnewsletter.com/p/matt-macinnis",
+    sourceUrl: "https://www.lennysnewsletter.com/p/10-contrarian-leadership-truths",
   },
   {
     id: "elena-verna",
@@ -328,7 +328,7 @@ export const METADATA_INDEX = [
     published: "2025-12-18",
     filename: "podcasts/elena-verna-40.md",
     socialLabel: "Growth meets lovability",
-    sourceUrl: "https://www.lennysnewsletter.com/p/elena-verna-40",
+    sourceUrl: "https://www.lennysnewsletter.com/p/the-new-ai-growth-playbook-for-2026-elena-verna",
   },
   {
     id: "edwin-chen",
@@ -340,7 +340,7 @@ export const METADATA_INDEX = [
     published: "2025-12-07",
     filename: "podcasts/edwin-chen.md",
     socialLabel: "$1B bootstrapped with <100 people",
-    sourceUrl: "https://www.lennysnewsletter.com/p/edwin-chen",
+    sourceUrl: "https://www.lennysnewsletter.com/p/surge-ai-edwin-chen",
   },
   {
     id: "tomer-cohen",
@@ -352,7 +352,7 @@ export const METADATA_INDEX = [
     published: "2025-12-04",
     filename: "podcasts/tomer-cohen.md",
     socialLabel: "LinkedIn CPO's vision",
-    sourceUrl: "https://www.lennysnewsletter.com/p/tomer-cohen",
+    sourceUrl: "https://www.lennysnewsletter.com/p/why-linkedin-is-replacing-pms",
   },
   {
     id: "jeanne-grosser",
@@ -364,7 +364,7 @@ export const METADATA_INDEX = [
     published: "2025-11-30",
     filename: "podcasts/jeanne-grosser.md",
     socialLabel: "From Vercel, Stripe, Google",
-    sourceUrl: "https://www.lennysnewsletter.com/p/jeanne-grosser",
+    sourceUrl: "https://www.lennysnewsletter.com/p/what-the-best-gtm-teams-do-differently",
   },
   {
     id: "stewart-butterfield",
@@ -376,7 +376,7 @@ export const METADATA_INDEX = [
     published: "2025-11-20",
     filename: "podcasts/stewart-butterfield.md",
     socialLabel: "Slack founder's product wisdom",
-    sourceUrl: "https://www.lennysnewsletter.com/p/stewart-butterfield",
+    sourceUrl: "https://www.lennysnewsletter.com/p/slack-founder-stewart-butterfield",
   },
   {
     id: "dr-fei-fei-li",
@@ -388,7 +388,7 @@ export const METADATA_INDEX = [
     published: "2025-11-16",
     filename: "podcasts/dr-fei-fei-li.md",
     socialLabel: "Where AI is really heading",
-    sourceUrl: "https://www.lennysnewsletter.com/p/dr-fei-fei-li",
+    sourceUrl: "https://www.lennysnewsletter.com/p/the-godmother-of-ai",
   },
   {
     id: "grant-lee",
@@ -400,7 +400,7 @@ export const METADATA_INDEX = [
     published: "2025-11-13",
     filename: "podcasts/grant-lee.md",
     socialLabel: "From rejection to $100M",
-    sourceUrl: "https://www.lennysnewsletter.com/p/grant-lee",
+    sourceUrl: "https://www.lennysnewsletter.com/p/how-50-people-built-a-profitable-ai-unicorn",
   },
   {
     id: "melanie-perkins",
@@ -412,7 +412,7 @@ export const METADATA_INDEX = [
     published: "2025-11-02",
     filename: "podcasts/melanie-perkins.md",
     socialLabel: "The Canva story",
-    sourceUrl: "https://www.lennysnewsletter.com/p/melanie-perkins",
+    sourceUrl: "https://www.lennysnewsletter.com/p/the-making-of-canva",
   },
   {
     id: "chip-huyen",
@@ -424,7 +424,7 @@ export const METADATA_INDEX = [
     published: "2025-10-23",
     filename: "podcasts/chip-huyen.md",
     socialLabel: "Nvidia, Stanford, Netflix",
-    sourceUrl: "https://www.lennysnewsletter.com/p/chip-huyen",
+    sourceUrl: "https://www.lennysnewsletter.com/p/al-engineering-101-with-chip-huyen",
   },
   {
     id: "robby-stein",
@@ -436,7 +436,7 @@ export const METADATA_INDEX = [
     published: "2025-10-10",
     filename: "podcasts/robby-stein.md",
     socialLabel: "VP of Product, Google Search",
-    sourceUrl: "https://www.lennysnewsletter.com/p/robby-stein",
+    sourceUrl: "https://www.lennysnewsletter.com/p/how-google-built-ai-mode-in-under-a-year",
   },
   {
     id: "albert-cheng",
@@ -448,7 +448,7 @@ export const METADATA_INDEX = [
     published: "2025-10-05",
     filename: "podcasts/albert-cheng.md",
     socialLabel: "Duolingo, Grammarly, Chess.com",
-    sourceUrl: "https://www.lennysnewsletter.com/p/albert-cheng",
+    sourceUrl: "https://www.lennysnewsletter.com/p/how-to-find-hidden-growth-opportunities-albert-cheng",
   },
   {
     id: "ravi-mehta",
@@ -460,7 +460,7 @@ export const METADATA_INDEX = [
     published: "2025-09-29",
     filename: "podcasts/ravi-mehta.md",
     socialLabel: "The secret to better AI prototypes",
-    sourceUrl: "https://www.lennysnewsletter.com/p/ravi-mehta",
+    sourceUrl: "https://www.lennysnewsletter.com/p/the-secret-to-better-ai-prototypes",
   },
   {
     id: "hamel-husain-shreya-shankar",
@@ -472,7 +472,7 @@ export const METADATA_INDEX = [
     published: "2025-09-25",
     filename: "podcasts/hamel-husain--shreya-shankar.md",
     socialLabel: "Creators of the #1 eval course",
-    sourceUrl: "https://www.lennysnewsletter.com/p/hamel-husain-shreya-shankar",
+    sourceUrl: "https://www.lennysnewsletter.com/p/why-ai-evals-are-the-hottest-new-skill",
   },
   {
     id: "ethan-smith",
@@ -484,7 +484,7 @@ export const METADATA_INDEX = [
     published: "2025-09-14",
     filename: "podcasts/ethan-smith.md",
     socialLabel: "The ultimate guide to AEO",
-    sourceUrl: "https://www.lennysnewsletter.com/p/ethan-smith",
+    sourceUrl: "https://www.lennysnewsletter.com/p/the-ultimate-guide-to-aeo-ethan-smith",
   },
   {
     id: "ben-horowitz",
@@ -496,7 +496,7 @@ export const METADATA_INDEX = [
     published: "2025-09-11",
     filename: "podcasts/ben-horowitz.md",
     socialLabel: "a16z co-founder speaks",
-    sourceUrl: "https://www.lennysnewsletter.com/p/ben-horowitz",
+    sourceUrl: "https://www.lennysnewsletter.com/p/46b-of-hard-truths-from-ben-horowitz",
   },
   {
     id: "scott-wu",
@@ -508,7 +508,7 @@ export const METADATA_INDEX = [
     published: "2025-09-08",
     filename: "podcasts/scott-wu.md",
     socialLabel: "Cognition CEO's vision",
-    sourceUrl: "https://www.lennysnewsletter.com/p/scott-wu",
+    sourceUrl: "https://www.lennysnewsletter.com/p/how-devin-replaces-your-junior-engineers",
   },
   {
     id: "howie-liu",
@@ -520,7 +520,7 @@ export const METADATA_INDEX = [
     published: "2025-08-31",
     filename: "podcasts/howie-liu.md",
     socialLabel: "Airtable CEO's AI bet",
-    sourceUrl: "https://www.lennysnewsletter.com/p/howie-liu",
+    sourceUrl: "https://www.lennysnewsletter.com/p/how-we-restructured-airtables-entire-org-for-ai",
   },
   {
     id: "asha-sharma",
@@ -532,7 +532,7 @@ export const METADATA_INDEX = [
     published: "2025-08-28",
     filename: "podcasts/asha-sharma.md",
     socialLabel: "Microsoft CVP of AI Platform",
-    sourceUrl: "https://www.lennysnewsletter.com/p/asha-sharma",
+    sourceUrl: "https://www.lennysnewsletter.com/p/how-80000-companies-build-with-ai-asha-sharma",
   },
   {
     id: "eoghan-mccabe",
@@ -544,7 +544,7 @@ export const METADATA_INDEX = [
     published: "2025-08-21",
     filename: "podcasts/eoghan-mccabe.md",
     socialLabel: "Intercom's AI reinvention",
-    sourceUrl: "https://www.lennysnewsletter.com/p/eoghan-mccabe",
+    sourceUrl: "https://www.lennysnewsletter.com/p/how-intercom-rose-from-the-ashes-eoghan-mccabe",
   },
   {
     id: "nick-turley",
@@ -556,7 +556,7 @@ export const METADATA_INDEX = [
     published: "2025-08-09",
     filename: "podcasts/nick-turley.md",
     socialLabel: "Head of ChatGPT at OpenAI",
-    sourceUrl: "https://www.lennysnewsletter.com/p/nick-turley",
+    sourceUrl: "https://www.lennysnewsletter.com/p/inside-chatgpt-nick-turley",
   },
   {
     id: "bret-taylor",
@@ -568,7 +568,7 @@ export const METADATA_INDEX = [
     published: "2025-07-31",
     filename: "podcasts/bret-taylor.md",
     socialLabel: "Future of careers and agents",
-    sourceUrl: "https://www.lennysnewsletter.com/p/bret-taylor",
+    sourceUrl: "https://www.lennysnewsletter.com/p/he-saved-openai-bret-taylor",
   },
   {
     id: "madhavan-ramanujam",
@@ -580,7 +580,7 @@ export const METADATA_INDEX = [
     published: "2025-07-27",
     filename: "podcasts/madhavan-ramanujam.md",
     socialLabel: "Includes 50 unicorns",
-    sourceUrl: "https://www.lennysnewsletter.com/p/madhavan-ramanujam",
+    sourceUrl: "https://www.lennysnewsletter.com/p/pricing-and-scaling-your-ai-product-madhavan-ramanujam",
   },
   {
     id: "dan-shipper",
@@ -592,7 +592,7 @@ export const METADATA_INDEX = [
     published: "2025-07-17",
     filename: "podcasts/dan-shipper.md",
     socialLabel: "7-figure revenue, fully AI-built",
-    sourceUrl: "https://www.lennysnewsletter.com/p/dan-shipper",
+    sourceUrl: "https://www.lennysnewsletter.com/p/inside-every-dan-shipper",
   },
   {
     id: "benjamin-mann",
@@ -604,7 +604,7 @@ export const METADATA_INDEX = [
     published: "2025-07-20",
     filename: "podcasts/benjamin-mann.md",
     socialLabel: "Superintelligence by 2028?",
-    sourceUrl: "https://www.lennysnewsletter.com/p/benjamin-mann",
+    sourceUrl: "https://www.lennysnewsletter.com/p/anthropic-co-founder-benjamin-mann",
   },
   {
     id: "sherwin-wu-v2",
@@ -616,7 +616,7 @@ export const METADATA_INDEX = [
     published: "2026-02-12",
     filename: "podcasts/sherwin-wu-v2.md",
     socialLabel: "Engineering tradeoffs in AI",
-    sourceUrl: "https://www.lennysnewsletter.com/p/sherwin-wu-v2",
+    sourceUrl: "https://www.lennysnewsletter.com/p/engineers-are-becoming-sorcerers",
   },
   {
     id: "aishwarya-reganti-kiriti-badam",
@@ -628,7 +628,7 @@ export const METADATA_INDEX = [
     published: "2026-01-11",
     filename: "podcasts/aishwarya-naresh-reganti--kiriti-badam.md",
     socialLabel: "AI feedback loops that work",
-    sourceUrl: "https://www.lennysnewsletter.com/p/aishwarya-naresh-reganti-kiriti-badam",
+    sourceUrl: "https://www.lennysnewsletter.com/p/why-your-ai-product-needs-a-different-2ea",
   },
   {
     id: "jason-droege",
@@ -640,7 +640,7 @@ export const METADATA_INDEX = [
     published: "2025-10-09",
     filename: "podcasts/jason-droege.md",
     socialLabel: "From Uber Eats to Scale AI",
-    sourceUrl: "https://www.lennysnewsletter.com/p/jason-droege",
+    sourceUrl: "https://www.lennysnewsletter.com/p/first-interview-with-scale-ais-ceo-jason-droege",
   },
   {
     id: "nicole-forsgren",
@@ -652,7 +652,7 @@ export const METADATA_INDEX = [
     published: "2025-10-19",
     filename: "podcasts/nicole-forsgren.md",
     socialLabel: "Creator of DORA and SPACE",
-    sourceUrl: "https://www.lennysnewsletter.com/p/nicole-forsgren",
+    sourceUrl: "https://www.lennysnewsletter.com/p/how-to-measure-ai-developer-productivity",
   },
   {
     id: "brendan-foody",
@@ -664,7 +664,7 @@ export const METADATA_INDEX = [
     published: "2025-09-18",
     filename: "podcasts/brendan-foody.md",
     socialLabel: "$1M to $500M in 17 months",
-    sourceUrl: "https://www.lennysnewsletter.com/p/brendan-foody",
+    sourceUrl: "https://www.lennysnewsletter.com/p/experts-writing-ai-evals-brendan-foody",
   },
   {
     id: "rachel-lockett",
@@ -676,7 +676,7 @@ export const METADATA_INDEX = [
     published: "2025-11-23",
     filename: "podcasts/rachel-lockett.md",
     socialLabel: "High-trust team building",
-    sourceUrl: "https://www.lennysnewsletter.com/p/rachel-lockett",
+    sourceUrl: "https://www.lennysnewsletter.com/p/a-guide-to-difficult-conversations",
   },
   {
     id: "jen-abel",
@@ -688,7 +688,7 @@ export const METADATA_INDEX = [
     published: "2025-11-09",
     filename: "podcasts/jen-abel.md",
     socialLabel: "Enterprise sales playbook",
-    sourceUrl: "https://www.lennysnewsletter.com/p/jen-abel",
+    sourceUrl: "https://www.lennysnewsletter.com/p/the-enterprise-sales-playbook-1m-to-10m-arr",
   },
   {
     id: "dhanji-r-prasanna",
@@ -700,7 +700,7 @@ export const METADATA_INDEX = [
     published: "2025-10-26",
     filename: "podcasts/dhanji-r-prasanna.md",
     socialLabel: "Block CTO's AI playbook",
-    sourceUrl: "https://www.lennysnewsletter.com/p/dhanji-r-prasanna",
+    sourceUrl: "https://www.lennysnewsletter.com/p/how-block-is-becoming-the-most-ai-native",
   },
   {
     id: "garrett-lord",
@@ -712,7 +712,7 @@ export const METADATA_INDEX = [
     published: "2025-08-24",
     filename: "podcasts/garrett-lord.md",
     socialLabel: "Handshake CEO's AI pivot",
-    sourceUrl: "https://www.lennysnewsletter.com/p/garrett-lord",
+    sourceUrl: "https://www.lennysnewsletter.com/p/inside-handshake-garrett-lord",
   },
   {
     id: "matt-lemay",
@@ -724,7 +724,7 @@ export const METADATA_INDEX = [
     published: "2025-08-14",
     filename: "podcasts/matt-lemay.md",
     socialLabel: "Career-saving product advice",
-    sourceUrl: "https://www.lennysnewsletter.com/p/matt-lemay",
+    sourceUrl: "https://www.lennysnewsletter.com/p/the-one-question-that-saves-product-careers-matt-lemay",
   },
   {
     id: "chip-conley",
